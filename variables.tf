@@ -76,15 +76,17 @@ variable "vm_dns_servers" {
 
 variable "vm_ipv4_address" {
   type        = string
-  description = "ipv4 addresses for a vm"
+  description = "IPv4 addresses for a vm"
 }
 
 variable "vm_ipv4_gateway" {
-  type = string
+  type        = string
+  description = "IPv4 address of the Gateway"
 }
 
 variable "vm_ipv4_netmask" {
-  type = string
+  type        = string
+  description = "Netmask"
 }
 
 variable "vm_public_key" {
@@ -100,7 +102,7 @@ variable "vm_lin_ssh_username" {
 }
 
 variable "vsphere_cluster" {
-  type = string
+  type        = string
   description = ""
 }
 
@@ -109,7 +111,7 @@ variable "vmcount" {
   description = "number of VM to create"
   default     = 1
   validation {
-    condition     = var.vmcount >= 1 && var.vmcount <= 5
-    error_message = "The value of vmcount must be between 1 and 5."
+    condition     = var.vmcount >= 1 && var.vmcount <= 4
+    error_message = "The value of vmcount must be between 1 and 4."
   }
 }

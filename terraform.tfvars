@@ -1,5 +1,5 @@
 ## vSphere Credentials ##
-vsphere_vcenter      = ""
+vsphere_vcenter  = ""
 vsphere_username = ""
 vsphere_password = ""
 
