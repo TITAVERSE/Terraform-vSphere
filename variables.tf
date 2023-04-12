@@ -61,7 +61,7 @@ variable "vm_ram" {
   description = "Quantity of RAM in GB"
   default     = 4
   validation {
-    condition     = var.vm_cpu_core >= 4 && var.vm_cpu_core <= 128
+    condition     = var.vm_ram >= 4 && var.vm_ram <= 128
     error_message = "The value of vm_ram must be between 1 and 4."
   }
 }
