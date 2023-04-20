@@ -63,8 +63,8 @@ variable "vm_ram" {
   description = "Quantity of RAM in GB"
   default     = 4
   validation {
-    condition     = var.vm_ram >= 4 && var.vm_ram <= 128
-    error_message = "The value of vm_ram must be between 1 and 4."
+    condition     = var.vm_ram >= 2 && var.vm_ram <= 128
+    error_message = "The value of vm_ram must be between 2 and 128."
   }
 }
 
@@ -101,7 +101,7 @@ variable "vm_lin_ssh_username" {
   default   = "sam"
 }
 
-variable "vsphere_cluster" {
+variable "vmware_vcs" {
   type        = string
   description = ""
 }
