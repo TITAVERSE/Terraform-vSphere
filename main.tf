@@ -25,8 +25,7 @@ data "vsphere_virtual_machine" "template" {
 
 #### VM Creation ####
 resource "vsphere_virtual_machine" "vm" {
-  count = var.vmcount
-
+  count                  = var.vmcount
   name                   = "${var.vmname}${count.index}"
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
@@ -35,6 +34,10 @@ resource "vsphere_virtual_machine" "vm" {
   cpu_hot_remove_enabled = false
   resource_pool_id       = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id           = data.vsphere_datastore.datastore.id
+  cdrom {
+    datastore_id = data.vsphere_datastore.datastore.id
+    path        = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"
+  }
 
   network_interface {
     network_id   = data.vsphere_network.network.id
