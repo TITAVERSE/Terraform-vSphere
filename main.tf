@@ -36,8 +36,9 @@ resource "vsphere_virtual_machine" "vm" {
   datastore_id           = data.vsphere_datastore.datastore.id
   cdrom {
     datastore_id = data.vsphere_datastore.datastore.id
-    path        = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"
+    path         = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"
   }
+  guest_id = "ubuntu64Guest"
 
   network_interface {
     network_id   = data.vsphere_network.network.id
@@ -52,7 +53,6 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   lifecycle {
-    create_before_destroy = true
     ignore_changes = [
       annotation
     ]
