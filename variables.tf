@@ -19,13 +19,20 @@ variable "vsphere_datacenter" {
   default     = ""
 }
 
-variable "vm_datastore" {
+variable "vsphere_datastore" {
   type        = string
   description = ""
   default     = ""
 }
 
-variable "vm_network" {
+variable "vsphere_network" {
+  type        = string
+  description = ""
+  default     = ""
+}
+
+variable "vsphere_cluster" {
+  type        = string
   description = ""
   default     = ""
 }
@@ -99,11 +106,6 @@ variable "vm_lin_ssh_username" {
   type      = string
   sensitive = true
   default   = "sam"
-}
-
-variable "vmware_vcs" {
-  type        = string
-  description = ""
 }
 
 variable "vmcount" {
