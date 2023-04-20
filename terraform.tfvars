@@ -1,5 +1,5 @@
 ## vSphere Credentials ##
-vsphere_vcenter  = ""
+vsphere_vcenter  = "https://10.200.200.67/"
 vsphere_username = "sa_terraform"
 vsphere_password = ""
 
