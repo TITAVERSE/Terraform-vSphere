@@ -1,6 +1,6 @@
 ## vSphere Credentials ##
 vsphere_vcenter  = ""
-vsphere_username = ""
+vsphere_username = "sa_terraform"
 vsphere_password = ""
 
 ## Infra specs ##
