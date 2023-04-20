@@ -27,7 +27,7 @@ data "vsphere_virtual_machine" "template" {
 resource "vsphere_virtual_machine" "vm" {
   count = var.vmcount
 
-  name                   = "var.vmname${count.index}"
+  name                   = "${var.vmname}${count.index}"
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
   memory                 = var.vm_ram * 1024
