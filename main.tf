@@ -34,11 +34,11 @@ resource "vsphere_virtual_machine" "vm" {
   cpu_hot_remove_enabled = false
   resource_pool_id       = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id           = data.vsphere_datastore.datastore.id
+  guest_id               = "ubuntu64Guest"
   cdrom {
     datastore_id = data.vsphere_datastore.datastore.id
     path         = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"
   }
-  guest_id = "ubuntu64Guest"
 
   network_interface {
     network_id   = data.vsphere_network.network.id
