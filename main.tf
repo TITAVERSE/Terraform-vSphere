@@ -25,16 +25,18 @@ data "vsphere_virtual_machine" "template" {
 
 #### VM Creation ####
 resource "vsphere_virtual_machine" "vm" {
-  count                  = var.vmcount
-  name                   = "${var.vmname}${count.index}"
-  num_cpus               = var.vm_cpu_socket
-  num_cores_per_socket   = var.vm_cpu_core
-  memory                 = var.vm_ram * 1024
-  cpu_hot_add_enabled    = false
-  cpu_hot_remove_enabled = false
-  resource_pool_id       = data.vsphere_compute_cluster.cluster.resource_pool_id
-  datastore_id           = data.vsphere_datastore.datastore.id
-  guest_id               = "ubuntu64Guest"
+  count                      = var.vmcount
+  wait_for_guest_net_timeout = 0
+  wait_for_guest_ip_timeout  = 0
+  name                       = "${var.vmname}${count.index}"
+  num_cpus                   = var.vm_cpu_socket
+  num_cores_per_socket       = var.vm_cpu_core
+  memory                     = var.vm_ram * 1024
+  cpu_hot_add_enabled        = false
+  cpu_hot_remove_enabled     = false
+  resource_pool_id           = data.vsphere_compute_cluster.cluster.resource_pool_id
+  datastore_id               = data.vsphere_datastore.datastore.id
+  guest_id                   = "ubuntu64Guest"
   cdrom {
     datastore_id = data.vsphere_datastore.datastore.id
     path         = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"
