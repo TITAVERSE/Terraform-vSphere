@@ -1,18 +1,18 @@
 ### vCenter access ###
 variable "vsphere_vcenter" {
-  type = string
+  type        = string
   description = "VMWare vCenter server FQDN / IP"
 }
 
 variable "vsphere_username" {
-  type = string
+  type        = string
   description = "vSphere username"
   sensitive   = true
 }
 
 variable "vsphere_password" {
   description = "vsphere user password"
-  type = string
+  type        = string
   sensitive   = true
 }
 
@@ -85,7 +85,7 @@ variable "vm_dns_servers" {
 }
 
 variable "vm_ipv4_address" {
-  type        = string
+  type        = list(string)
   description = "IPv4 addresses for a vm"
 }
 
@@ -133,6 +133,42 @@ variable "template_folder" {
 
 variable "vm_ipv4_ns" {
   description = "Liste des serveurs DNS"
-  type = list
-  default = ["8.8.8.8","8.8.4.4"]
+  type        = list(any)
+  default     = ["8.8.8.8", "8.8.4.4"]
+}
+
+variable "customer_domain_name" {
+  description = "Local domain AD/LDAP"
+  type        = string
+  default     = "stxlab.local"
+}
+
+variable "cust_trigramm" {
+  description = "Trigramme du client"
+  type        = string
+  default     = "STX"
+}
+
+variable "vm_disk_config" {
+  type = list(map(list(map(number))))
+  default = [
+    {
+      disks = [
+        { size = 10 },
+        { size = 100 }
+      ]
+    },
+    {
+      disks = [
+        { size = 10 },
+        { size = 400 },
+        { size = 400 }
+      ]
+    },
+    {
+      disks = [
+        { size = 52 }
+      ]
+    }
+  ]
 }
