@@ -31,7 +31,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cores_per_socket       = var.vm_cpu_core
   memory                     = var.vm_ram * 1024
   cpu_hot_add_enabled        = true
-  cpu_hot_remove_enabled     = false
+  cpu_hot_remove_enabled     = true
   resource_pool_id           = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id               = data.vsphere_datastore.datastore.id
   guest_id                   = "ubuntu64Guest"
@@ -47,8 +47,8 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label            = "${var.vmname}-disk"
-    thin_provisioned = true #data.vsphere_virtual_machine.template.disks.0.thin_provisioned
-    #eagerly_scrub    = true #data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
+    thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
+    eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
     size = 21 #var.vm_disk_size #== "" ? data.vsphere_virtual_machine.template.disks.0.size : var.disksize
   }
 
@@ -64,7 +64,7 @@ resource "vsphere_virtual_machine" "vm" {
         ipv4_netmask = var.vm_ipv4_netmask
       }
       ipv4_gateway = var.vm_ipv4_gateway
-      dns_server_list = [var.vm_ipv4_ns]
+      dns_server_list = var.vm_ipv4_ns
     }
   }
 

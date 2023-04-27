@@ -1,27 +1,30 @@
 ### vCenter access ###
 variable "vsphere_vcenter" {
+  type = string
   description = "VMWare vCenter server FQDN / IP"
 }
 
 variable "vsphere_username" {
+  type = string
   description = "vSphere username"
   sensitive   = true
 }
 
 variable "vsphere_password" {
   description = "vsphere user password"
+  type = string
   sensitive   = true
 }
 
 ### Datacenter ####
 variable "vsphere_datacenter" {
-  description = ""
+  description = "Datacenter name in vSphere"
   default     = ""
 }
 
 variable "vsphere_datastore" {
   type        = string
-  description = ""
+  description = "Datastore Name in vSphere"
   default     = ""
 }
 
@@ -130,5 +133,6 @@ variable "template_folder" {
 
 variable "vm_ipv4_ns" {
   description = "Liste des serveurs DNS"
-  type = string
+  type = list
+  default = ["8.8.8.8","8.8.4.4"]
 }
