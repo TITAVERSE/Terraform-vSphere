@@ -32,6 +32,7 @@ resource "vsphere_virtual_machine" "vm" {
   memory                     = var.vm_ram * 1024
   cpu_hot_add_enabled        = true
   cpu_hot_remove_enabled     = true
+  memory_hot_add_enabled = true
   resource_pool_id           = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id               = data.vsphere_datastore.datastore.id
   guest_id                   = "ubuntu64Guest"
