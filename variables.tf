@@ -150,25 +150,9 @@ variable "cust_trigramm" {
 }
 
 variable "vm_disk_config" {
-  type = list(map(list(map(number))))
-  default = [
-    {
-      disks = [
-        { size = 10 },
-        { size = 100 }
-      ]
-    },
-    {
-      disks = [
-        { size = 10 },
-        { size = 400 },
-        { size = 400 }
-      ]
-    },
-    {
-      disks = [
-        { size = 52 }
-      ]
-    }
+  type = list(list(number))
+  default = [    [10, 100],
+    [10, 400, 400],
+    [52]
   ]
 }

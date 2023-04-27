@@ -53,12 +53,12 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   dynamic "disk" {
-    for_each = var.vm_disk_config[count.index]["disks"]
+    for_each = var.vm_disk_config[count.index]
     content {
       label            = format("%s%03d$s", var.cust_trigramm, count.index + 1, "-disk")
       thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
       eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
-      size             = disk.value.size
+      size             = disk.value
     }
   }
 
