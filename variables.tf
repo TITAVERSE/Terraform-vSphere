@@ -117,3 +117,18 @@ variable "vmcount" {
     error_message = "The value of vmcount must be between 1 and 4."
   }
 }
+
+variable "vm_template" {
+  description = "Nom du template sur vSphere"
+  type        = string
+}
+
+variable "template_folder" {
+  description = "dossier contenant les templates de VM"
+  type        = string
+}
+
+variable "vm_ipv4_ns" {
+  description = "Liste des serveurs DNS"
+  type = string
+}
