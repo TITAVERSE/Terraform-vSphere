@@ -2,12 +2,14 @@
 data "vsphere_datacenter" "dc" {
   name = var.vsphere_datacenter
 }
-data "vsphere_datastore" "datastore" {
-  name          = var.vsphere_datastore
+
+data "vsphere_datastore_cluster" "cls_datastore" {
+  name          = var.vsphere_cluster_datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 }
+
 data "vsphere_compute_cluster" "cluster" {
-  name          = var.vsphere_cluster
+  name          = var.vsphere_cluster_host
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
@@ -21,7 +23,7 @@ data "vsphere_virtual_machine" "template" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-#### Create locals variables
+#### Create locals variables ####
 locals {
   loc_ipv4_address = var.vm_ipv4_address
   loc_ipv4_ns      = var.vm_ipv4_ns
@@ -40,8 +42,8 @@ resource "vsphere_virtual_machine" "vm" {
   cpu_hot_remove_enabled     = true
   memory_hot_add_enabled     = true
   resource_pool_id           = data.vsphere_compute_cluster.cluster.resource_pool_id
-  datastore_id               = data.vsphere_datastore.datastore.id
-  guest_id                   = "ubuntu64Guest"
+  datastore_cluster_id       = data.vsphere_datastore_cluster.cls_datastore.id
+  guest_id                   = var.guest_OS_family
   /*  cdrom {
     datastore_id = data.vsphere_datastore.datastore.id
     path         = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"

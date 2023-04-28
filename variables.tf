@@ -34,7 +34,7 @@ variable "vsphere_network" {
   default     = ""
 }
 
-variable "vsphere_cluster" {
+variable "vsphere_cluster_host" {
   type        = string
   description = ""
   default     = ""
@@ -159,4 +159,22 @@ variable "vm_disk_config" {
       ]
     }
   ]
+}
+
+variable "vsphere_cluster_datastore" {
+  type        = string
+  description = "Datastore cluster name"
+  default     = "STXLABCLDVMFS001"
+}
+
+variable "guest_OS" {
+  description = "OS to install, Linux, Windows, MacOS"
+  nullable    = true
+  default     = ""
+}
+
+variable "guest_OS_family" {
+  description = "OS to install, Linux, Windows, MacOS"
+  nullable    = true
+  default     = "otherGuest64"
 }
