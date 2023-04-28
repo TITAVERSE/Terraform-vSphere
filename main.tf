@@ -44,11 +44,6 @@ resource "vsphere_virtual_machine" "vm" {
   resource_pool_id           = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_cluster_id       = data.vsphere_datastore_cluster.cls_datastore.id
   guest_id                   = var.guest_OS_family
-  /*  cdrom {
-    datastore_id = data.vsphere_datastore.datastore.id
-    path         = "/ISOs/ubuntu-22.04.2-live-server-amd64.iso"
-  }
-*/
   network_interface {
     network_id   = data.vsphere_network.network.id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
