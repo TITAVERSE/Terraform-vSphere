@@ -42,10 +42,10 @@ variable "vsphere_cluster" {
 
 ### VM Specs ###
 
-variable "vmname" {
+variable "vm_hostname" {
   type        = string
   description = "Name of the VM"
-  default     = "STX-VM-POC-TRF"
+  default     = "localhost"
 }
 
 variable "vm_cpu_socket" {
@@ -150,9 +150,13 @@ variable "cust_trigramm" {
 }
 
 variable "vm_disk_config" {
-  type = list(list(number))
-  default = [    [10, 100],
-    [10, 400, 400],
-    [52]
+  type        = list(map(list(map(number))))
+  description = ""
+  default = [
+    {
+      disks = [
+        { size = 16 }
+      ]
+    }
   ]
 }

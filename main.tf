@@ -53,12 +53,13 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   dynamic "disk" {
-    for_each = var.vm_disk_config[count.index]
+    for_each = var.vm_disk_config[count.index]["disks"]
     content {
-      label            = format("%s%03d$s", var.cust_trigramm, count.index + 1, "-disk")
+      label            = "disk${disk.key + 1}"
       thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
       eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
-      size             = disk.value
+      size             = disk.value.size
+      unit_number      = disk.key
     }
   }
 
@@ -66,7 +67,7 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = data.vsphere_virtual_machine.template.id
     customize {
       linux_options {
-        host_name = "${var.vmname}${count.index + 1}"
+        host_name = format("%s%03d", var.cust_trigramm, count.index + 1)
         domain    = var.customer_domain_name
       }
       network_interface {
