@@ -99,16 +99,6 @@ variable "vm_lin_ssh_username" {
   default   = "sam"
 }
 
-variable "vmcount" {
-  type        = number
-  description = "number of VM to create"
-  default     = 1
-  validation {
-    condition     = var.vmcount >= 1 && var.vmcount <= 4
-    error_message = "The value of vmcount must be between 1 and 4."
-  }
-}
-
 variable "vm_template" {
   description = "Nom du template sur vSphere"
   type        = string
@@ -137,20 +127,26 @@ variable "cust_trigramm" {
   default     = "STX"
 }
 
-variable "vm_disk_config" {
-  type        = list(map(list(map(number))))
-  description = ""
-  default = [
-    {
-      disks = [
-        { size = 16 }
-      ]
-    }
-  ]
+variable "disk_size" {
+  type = number
+  description = "Size in GB of the disk"
+  default = 16
 }
 
 variable "guest_OS" {
   description = "OS to install, Linux, Windows, MacOS"
   nullable    = true
   default     = ""
+}
+
+variable "cpu_hot_add_remove" {
+  type = bool
+  description = "Enable adding/removing CPU while Powered on. Enabling/disabling this setup requires reboot."
+  default = true
+}
+
+variable "ram_hot_add" {
+  type = bool
+  description = "Enable adding RAM while Powered on. Enabling/disabling this setup requires reboot."
+  default = true
 }

@@ -1,16 +1,16 @@
 ## Creating one (1) VM :
 resource "vsphere_virtual_machine" "vm_linux" {
-  name             = "${var.vm_name_prefix}${count.index}"
+  name             = "${var.vm_name_prefix}"
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
-  datastore_id     = "${data.vsphere_datastore.ds.id}"
+  datastore_id     = "${data.vsphere_datastore_cluster.cls_datastore.id}"
 
   num_cpus  = var.vm_cpu_socket
   num_cores_per_socket = var.vm_cpu_core
   memory                     = var.vm_ram * 1024
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
-  cpu_hot_add_enabled        = true
-  cpu_hot_remove_enabled     = true
-  memory_hot_add_enabled     = true
+  cpu_hot_add_enabled        = var.cpu_hot_add_remove
+  cpu_hot_remove_enabled     = var.cpu_hot_add_remove
+  memory_hot_add_enabled     = var.ram_hot_add
 
   wait_for_guest_net_timeout = "${var.wait_for_guest_net_timeout}"
   network_interface {
@@ -21,6 +21,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
   disk {
     label            = "disk0"
     size             = "${var.disk_size != "" ? var.disk_size : data.vsphere_virtual_machine.template.disks.0.size}"
+    unit_number      = var.disk_unit_number
     thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
     eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
   }
@@ -29,7 +30,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
     customize {
       linux_options {
-        host_name = "${var.vm_name_prefix}${count.index}"
+        host_name = "${var.vm_name_prefix}"
         domain    = "${var.domain_name}"
         time_zone = "${var.time_zone != "" ? var.time_zone : "UTC"}"
       }
