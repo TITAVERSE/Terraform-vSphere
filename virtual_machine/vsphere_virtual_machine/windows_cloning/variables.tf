@@ -1,23 +1,18 @@
-### Customer Information
-variable "cust_trigramm" {
-  description = "Trigramme du client"
-  type        = string
-  default     = "STX"
-}
-
-### Metadata
-variable "tags" {
-  nullable = true
-}
-
-variable "custom_attribute" {
-  nullable = true
-}
-
 ### Datacenter ####
 variable "vsphere_datacenter" {
-  type        = string
   description = "Datacenter name in vSphere"
+  default     = ""
+}
+
+variable "vsphere_datastore" {
+  type        = string
+  description = "Datastore Name in vSphere"
+  default     = ""
+}
+
+variable "vsphere_network" {
+  type        = string
+  description = "Network name in vCenter"
   default     = ""
 }
 
@@ -27,39 +22,17 @@ variable "vsphere_cluster_host" {
   default     = ""
 }
 
-variable "vsphere_host" {
-  type        = string
-  description = "ESXi host"
-  default     = ""
-}
-
 variable "vsphere_cluster_datastore" {
   type        = string
   description = "Datastore cluster name"
   default     = "STXLABCLDVMFS001"
 }
 
-variable "vsphere_datastore" {
-  type        = string
-  description = "Datastore Name in vSphere"
-  default     = ""
-  /*validation {
-    condition     = var.vsphere_cluster_datastore == "" && var.vsphere_datastore == ""
-    error_message = "Please provide either 'Cluster Datastore' or 'Datastore' name"
-  }*/
-}
-
-variable "vsphere_network" {
-  type        = string
-  description = "Network name in vCenter"
-  default     = ""
-}
-
 ### VM Specs ###
 
 variable "vm_hostname" {
   type        = string
-  description = "VM's hostname"
+  description = "Name of the VM"
   default     = "localhost"
 }
 
@@ -93,19 +66,12 @@ variable "vm_ram" {
   }
 }
 
-variable "vm_disk_config" {
-  description = "Configuration of One disk"
-  type = object({
-    size = number
-    type = string
-  })
-}
-
 variable "vm_dns_servers" {
   type        = list(string)
   description = "List of DNS servers"
   default     = ["8.8.8.8", "8.8.4.4", "1.1.1.1"]
 }
+
 variable "vm_ipv4_address" {
   type        = list(string)
   description = "IPv4 addresses for a vm"
@@ -130,7 +96,7 @@ variable "vm_public_key" {
 variable "vm_lin_ssh_username" {
   type      = string
   sensitive = true
-  default   = "stxadmin"
+  default   = "sam"
 }
 
 variable "vm_template" {
@@ -155,6 +121,18 @@ variable "customer_domain_name" {
   default     = "stxlab.local"
 }
 
+variable "cust_trigramm" {
+  description = "Trigramme du client"
+  type        = string
+  default     = "STX"
+}
+
+variable "disk_size" {
+  type = number
+  description = "Size in GB of the disk"
+  default = 16
+}
+
 variable "guest_OS" {
   description = "OS to install, Linux, Windows, MacOS"
   nullable    = true
@@ -162,19 +140,13 @@ variable "guest_OS" {
 }
 
 variable "cpu_hot_add_remove" {
-  type        = bool
+  type = bool
   description = "Enable adding/removing CPU while Powered on. Enabling/disabling this setup requires reboot."
-  default     = true
+  default = true
 }
 
 variable "ram_hot_add" {
-  type        = bool
+  type = bool
   description = "Enable adding RAM while Powered on. Enabling/disabling this setup requires reboot."
-  default     = true
-}
-
-variable "vm_time_zone" {
-  type        = string
-  description = "Timezone of the VM"
-  default     = "Europe/Moscow"
+  default = true
 }
