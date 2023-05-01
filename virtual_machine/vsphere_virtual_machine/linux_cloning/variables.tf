@@ -1,3 +1,21 @@
+### vCenter access ###
+variable "vsphere_vcenter" {
+  type        = string
+  description = "VMWare vCenter server FQDN / IP"
+}
+
+variable "vsphere_username" {
+  type        = string
+  description = "vSphere username"
+  sensitive   = true
+}
+
+variable "vsphere_password" {
+  description = "vsphere user password"
+  type        = string
+  sensitive   = true
+}
+
 ### Customer Information
 variable "cust_trigramm" {
   description = "Trigramme du client"
