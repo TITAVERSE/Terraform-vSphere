@@ -21,12 +21,12 @@ resource "vsphere_virtual_machine" "vm_linux" {
   dynamic "disk" {
     for_each = vm_disks
     content {
-      label            = label            = format("%s-disk-%d", var.vm_hostname, disk.value.unit_number)
+      label            = format("%s-disk-%d", var.vm_hostname, disk.value.unit_number)
       size             = var.vm_disks["size"] != "" || var.vm_disks["size"] <= data.vsphere_virtual_machine.template.disks.0.size ? var.vm_disks["size"] : data.vsphere_virtual_machine.template.disks.0.size
       thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
-      unit_number = var.vm_disks["unit_number"]
+      unit_number      = var.vm_disks["unit_number"]
       eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
-      }
+    }
   }
 
   clone {
