@@ -109,27 +109,49 @@ variable "vm_disks" {
     type        = string
     unit_number = number
   }))
-  default = []
+  default = [
+    {
+      size        = 50
+      type        = "HDD"
+      unit_number = 0
+    },
+    {
+      size        = 100
+      type        = "SSD"
+      unit_number = 1
+    }
+  ]
 }
 
-variable "vm_dns_servers" {
+
+variable "vm_ipv4_ns" {
+  description = "Liste des serveurs DNS"
   type        = list(string)
-  description = "List of DNS servers"
-  default     = ["8.8.8.8", "8.8.4.4", "1.1.1.1"]
+  default     = ["8.8.8.8", "8.8.4.4"]
 }
+
+variable "vm_dns_suffixes" {
+  description = "DNS suffixes"
+  type        = string
+  default     = "stxlab.local"
+}
+
 variable "vm_ipv4_address" {
-  type        = list(string)
+  type        = string
   description = "IPv4 addresses for a vm"
+  default     = "192.168.1.1"
 }
 
 variable "vm_ipv4_gateway" {
   type        = string
   description = "IPv4 address of the Gateway"
+  default     = "192.168.1.254"
 }
 
 variable "vm_ipv4_netmask" {
   type        = string
   description = "Netmask"
+  default     = 24
 }
 
 variable "vm_public_key" {
@@ -152,12 +174,6 @@ variable "vm_template" {
 variable "template_folder" {
   description = "dossier contenant les templates de VM"
   type        = string
-}
-
-variable "vm_ipv4_ns" {
-  description = "Liste des serveurs DNS"
-  type        = list(any)
-  default     = ["8.8.8.8", "8.8.4.4"]
 }
 
 variable "customer_domain_name" {
@@ -188,4 +204,10 @@ variable "vm_time_zone" {
   type        = string
   description = "Timezone of the VM"
   default     = "Europe/Moscow"
+}
+
+variable "wait_for_guest_net_timeout" {
+  type        = number
+  description = "timeout fo networking"
+  default     = 0
 }

@@ -12,10 +12,10 @@ data "vsphere_datastore_cluster" "cls_datastore" {
   name          = var.vsphere_cluster_datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 }
-
+/*
 data "vsphere_datastore" "datastores" {
-  count = length(data.vsphere_datastore_cluster.cls_datastore.datastore_ids)
-  id    = data.vsphere_datastore_cluster.cls_datastore.datastore_ids[count.index]
+  count = length(data.vsphere_datastore_cluster.cls_datastore.datastore)
+  id    = data.vsphere_datastore_cluster.cls_datastore.datastore[count.index].id
 }
 
 # The datastore with the most free space
@@ -36,6 +36,7 @@ data "vsphere_datastore" "datastore_with_most_free_space" {
 
   limit = 1
 }
+*/
 
 data "vsphere_network" "network" {
   name          = var.vsphere_network

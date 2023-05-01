@@ -1,8 +1,9 @@
 ## Creating one (1) VM :
 resource "vsphere_virtual_machine" "vm_linux" {
-  name             = var.vm_hostname
-  resource_pool_id = data.vsphere_resource_pool.pool.id
-  datastore_id     = var.datastore_name != "" ? data.vsphere_datastore.datastores.id : data.vsphere_datastore_cluster.cls_datastore.datastore_ids[0]
+  name                 = var.vm_hostname
+  resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
+  datastore_cluster_id = data.vsphere_datastore_cluster.cls_datastore.id
+  #datastore_id     = var.datastore_name != "" ? data.vsphere_datastore.datastores.id : data.vsphere_datastore_cluster.cls_datastore.datastore_ids[0]
 
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
@@ -19,12 +20,12 @@ resource "vsphere_virtual_machine" "vm_linux" {
   }
 
   dynamic "disk" {
-    for_each = vm_disks
+    for_each = var.vm_disks
     content {
       label            = format("%s-disk-%d", var.vm_hostname, disk.value.unit_number)
       size             = var.vm_disks["size"] != "" || var.vm_disks["size"] <= data.vsphere_virtual_machine.template.disks.0.size ? var.vm_disks["size"] : data.vsphere_virtual_machine.template.disks.0.size
-      thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
       unit_number      = var.vm_disks["unit_number"]
+      thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
       eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
     }
   }
@@ -33,8 +34,8 @@ resource "vsphere_virtual_machine" "vm_linux" {
     template_uuid = data.vsphere_virtual_machine.template.id
     customize {
       linux_options {
-        host_name = var.vm_name_prefix
-        domain    = var.domain_name
+        host_name = var.vm_hostname
+        domain    = var.customer_domain_name
         time_zone = var.vm_time_zone
       }
 
@@ -43,9 +44,8 @@ resource "vsphere_virtual_machine" "vm_linux" {
         ipv4_netmask = var.vm_ipv4_netmask
       }
 
-      ipv4_gateway    = var.ipv4_gateway
-      dns_server_list = ["${var.dns_servers}"]
-      dns_suffix_list = ["${var.domain_name}"]
+      ipv4_gateway    = var.vm_ipv4_gateway
+      dns_server_list = var.vm_ipv4_ns
     }
   }
   lifecycle {
