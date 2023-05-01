@@ -52,7 +52,7 @@ variable "vsphere_datastore" {
 variable "vsphere_network" {
   type        = string
   description = "Network name in vCenter"
-  default     = ""
+  default     = "VM Network"
 }
 
 ### VM Specs ###
@@ -92,13 +92,24 @@ variable "vm_ram" {
     error_message = "The value of vm_ram must be between 2 and 128."
   }
 }
-
+/*
 variable "vm_disk_config" {
   description = "Configuration of One disk"
   type = object({
     size = number
     type = string
   })
+}
+*/
+
+variable "vm_disks" {
+  description = "Configuration of One disk"
+  type = list(object({
+    size        = number
+    type        = string
+    unit_number = number
+  }))
+  default = []
 }
 
 variable "vm_dns_servers" {

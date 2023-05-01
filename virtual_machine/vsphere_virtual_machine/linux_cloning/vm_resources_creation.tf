@@ -18,11 +18,15 @@ resource "vsphere_virtual_machine" "vm_linux" {
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
   }
 
-  disk {
-    label            = format("%s-disk-$%d", "${var.vm_hostname}")
-    size             = var.vm_disk_config["size"] != "" && var.vm_disk_config["size"] <= data.vsphere_virtual_machine.template.disks.0.size ? var.disk_size : data.vsphere_virtual_machine.template.disks.0.size
-    thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
-    eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
+  dynamic "disk" {
+    for_each = vm_disks
+    content {
+      label            = label            = format("%s-disk-%d", var.vm_hostname, disk.value.unit_number)
+      size             = var.vm_disks["size"] != "" || var.vm_disks["size"] <= data.vsphere_virtual_machine.template.disks.0.size ? var.vm_disks["size"] : data.vsphere_virtual_machine.template.disks.0.size
+      thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
+      unit_number = var.vm_disks["unit_number"]
+      eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
+      }
   }
 
   clone {
