@@ -23,8 +23,8 @@ resource "vsphere_virtual_machine" "vm_linux" {
     for_each = var.vm_disks
     content {
       label            = format("%s-disk-%d", var.vm_hostname, disk.value.unit_number)
-      size             = var.vm_disks["size"] != "" || var.vm_disks["size"] <= data.vsphere_virtual_machine.template.disks.0.size ? var.vm_disks["size"] : data.vsphere_virtual_machine.template.disks.0.size
-      unit_number      = var.vm_disks["unit_number"]
+      size             = disk.value.size != "" || disk.value.size <= data.vsphere_virtual_machine.template.disks.0.size ? disk.value.size : data.vsphere_virtual_machine.template.disks.0.size
+      unit_number      = disk.value.unit_number
       thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
       eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
     }
