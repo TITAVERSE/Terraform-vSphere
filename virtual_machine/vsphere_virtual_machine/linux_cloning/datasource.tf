@@ -8,16 +8,23 @@ data "vsphere_compute_cluster" "cls_hosts" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_datastore_cluster" "cls_datastore" {
+/*data "vsphere_datastore_cluster" "cls_datastore" {
   name          = var.vsphere_cluster_datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 }
-/*
-data "vsphere_datastore" "datastores" {
+*/
+
+data "vsphere_datastore" "datastore" {
+  name = var.vsphere_datastore
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
+/*data "vsphere_datastore" "datastores" {
   count = length(data.vsphere_datastore_cluster.cls_datastore.datastore)
   id    = data.vsphere_datastore_cluster.cls_datastore.datastore[count.index].id
 }
-
+*/
+/*
 # The datastore with the most free space
 data "vsphere_datastore" "datastore_with_most_free_space" {
   count = var.datastore_name == "" && var.datastore_cluster_name != "" ? length(data.vsphere_datastore.datastores) : 0
