@@ -51,7 +51,7 @@ variable "vsphere_host" {
   default     = ""
 }
 
-variable "vsphere_cluster_datastore" {
+variable "datastore" {
   type        = string
   description = "Datastore cluster name"
   default     = "STXLABCLDVMFS001"
@@ -86,7 +86,7 @@ variable "vm_cpu_socket" {
   description = "Number of socket cpu"
   default     = 1
   validation {
-    condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 4
+    condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 32
     error_message = "The value of vmcount must be between 1 and 5."
   }
 }
@@ -96,8 +96,8 @@ variable "vm_cpu_core" {
   description = "Number of core per cpu"
   default     = 1
   validation {
-    condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 32
-    error_message = "The value of vm_cpu_core must be between 1 and 4."
+    condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 16
+    error_message = "The value of vm_cpu_core must be between 1 and 16."
   }
 }
 
