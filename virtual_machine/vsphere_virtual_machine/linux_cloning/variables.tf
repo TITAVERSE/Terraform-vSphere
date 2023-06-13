@@ -96,7 +96,7 @@ variable "vm_cpu_core" {
   description = "Number of core per cpu"
   default     = 1
   validation {
-    condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 4
+    condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 32
     error_message = "The value of vm_cpu_core must be between 1 and 4."
   }
 }
