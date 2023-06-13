@@ -53,18 +53,8 @@ variable "vsphere_host" {
 
 variable "datastore" {
   type        = string
-  description = "Datastore cluster name"
+  description = "Datastore name"
   default     = "STXLABCLDVMFS001"
-}
-
-variable "vsphere_datastore" {
-  type        = string
-  description = "Datastore Name in vSphere"
-  default     = ""
-  /*validation {
-    condition     = var.vsphere_cluster_datastore == "" && var.vsphere_datastore == ""
-    error_message = "Please provide either 'Cluster Datastore' or 'Datastore' name"
-  }*/
 }
 
 variable "vsphere_network" {
