@@ -15,7 +15,7 @@ data "vsphere_compute_cluster" "cls_hosts" {
 */
 
 data "vsphere_datastore" "datastore" {
-  name = var.vsphere_datastore
+  name = var.datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
