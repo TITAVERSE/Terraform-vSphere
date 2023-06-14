@@ -33,13 +33,13 @@ variable "custom_attribute" {
 }
 
 ### Datacenter ####
-variable "vsphere_datacenter" {
+variable "vsphere_dc" {
   type        = string
   description = "Datacenter name in vSphere"
   default     = ""
 }
 
-variable "vsphere_cluster_host" {
+variable "vsphere_cls_host" {
   type        = string
   description = "Cluster name in a Datacenter"
   default     = ""
@@ -51,10 +51,10 @@ variable "vsphere_host" {
   default     = ""
 }
 
-variable "datastore" {
+variable "vsphere_ds" {
   type        = string
   description = "Datastore name"
-  default     = "STXLABCLDVMFS001"
+  default     = ""
 }
 
 variable "vsphere_network" {
@@ -77,7 +77,7 @@ variable "vm_cpu_socket" {
   default     = 1
   validation {
     condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 32
-    error_message = "The value of vmcount must be between 1 and 5."
+    error_message = "The value of vmcount must be between 1 and 32."
   }
 }
 
@@ -96,22 +96,14 @@ variable "vm_ram" {
   description = "Quantity of RAM in GB"
   default     = 4
   validation {
-    condition     = var.vm_ram >= 2 && var.vm_ram <= 128
+    condition     = var.vm_ram >= 4 && var.vm_ram <= 128
     error_message = "The value of vm_ram must be between 2 and 128."
   }
 }
-/*
-variable "vm_disk_config" {
-  description = "Configuration of One disk"
-  type = object({
-    size = number
-    type = string
-  })
-}
-*/
+
 
 variable "vm_disks" {
-  description = "Configuration of One disk"
+  description = "Configuration of One (1) disk"
   type = list(object({
     size        = number
     type        = string
@@ -141,7 +133,7 @@ variable "vm_ipv4_ns" {
 variable "vm_dns_suffixes" {
   description = "DNS suffixes"
   type        = string
-  default     = "stxlab.local"
+  default     = "stx.corp"
 }
 
 variable "vm_ipv4_address" {
@@ -171,23 +163,23 @@ variable "vm_public_key" {
 variable "vm_lin_ssh_username" {
   type      = string
   sensitive = true
-  default   = "stxadmin"
+  default   = "admin-stx"
 }
 
 variable "vm_template" {
-  description = "Nom du template sur vSphere"
+  description = "VM Template name in vSphere"
   type        = string
 }
 
 variable "template_folder" {
-  description = "dossier contenant les templates de VM"
+  description = "vSphere folder containing Templates"
   type        = string
 }
 
 variable "customer_domain_name" {
   description = "Local domain AD/LDAP"
   type        = string
-  default     = "stxlab.local"
+  default     = "stx.corp"
 }
 
 variable "guest_OS" {

@@ -2,9 +2,7 @@
 resource "vsphere_virtual_machine" "vm_linux" {
   name                 = var.vm_hostname
   resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
-  #datastore_cluster_id = data.vsphere_datastore_cluster.cls_datastore.id
   datastore_id = data.vsphere_datastore.datastore.id
-  #datastore_id     = var.datastore_name != "" ? data.vsphere_datastore.datastores.id : data.vsphere_datastore_cluster.cls_datastore.datastore_ids[0]
 
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
