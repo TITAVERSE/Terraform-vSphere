@@ -106,18 +106,15 @@ variable "vm_disks" {
   description = "Configuration of One (1) disk"
   type = list(object({
     size        = number
-    type        = string
     unit_number = number
   }))
   default = [
     {
       size        = 50
-      type        = "HDD"
       unit_number = 0
     },
     {
       size        = 100
-      type        = "SSD"
       unit_number = 1
     }
   ]
