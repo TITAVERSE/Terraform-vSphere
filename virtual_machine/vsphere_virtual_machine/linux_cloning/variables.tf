@@ -73,7 +73,7 @@ variable "vm_hostname" {
 
 variable "vm_firmware" {
   type = string
-  description = "EFI or BIOS"*
+  description = "EFI or BIOS"
   default = "EFI"
 }
 
