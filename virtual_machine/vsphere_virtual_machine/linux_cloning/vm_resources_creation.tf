@@ -4,6 +4,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
   resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
   datastore_id = data.vsphere_datastore.datastore.id
 
+  firmware = var.vm_firmware
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
   memory                 = var.vm_ram * 1024

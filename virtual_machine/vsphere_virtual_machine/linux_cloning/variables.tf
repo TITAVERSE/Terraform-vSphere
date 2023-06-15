@@ -71,6 +71,12 @@ variable "vm_hostname" {
   default     = "localhost"
 }
 
+variable "vm_firmware" {
+  type = string
+  description = "EFI or BIOS"*
+  default = "EFI"
+}
+
 variable "vm_cpu_socket" {
   type        = number
   description = "Number of socket cpu"
