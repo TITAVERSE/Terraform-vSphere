@@ -1,8 +1,9 @@
 ## Creating one (1) VM :
 resource "vsphere_virtual_machine" "vm_linux" {
-  name                 = var.vm_hostname
+  name                 = var.vm_name
   resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
   datastore_id = data.vsphere_datastore.datastore.id
+  folder = '${var.vsphere_dc}'/'${var.vsphere_folder}'
 
   firmware = var.vm_firmware
   num_cpus               = var.vm_cpu_socket

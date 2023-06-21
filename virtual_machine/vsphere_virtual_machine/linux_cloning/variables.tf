@@ -63,7 +63,18 @@ variable "vsphere_network" {
   default     = "VM Network"
 }
 
+variable "vsphere_folder" {
+  type = string
+  default = "Discovered virtual machine"
+}
+
 ### VM Specs ###
+
+variable "vm_name" {
+  type        = string
+  description = "VM Name"
+  default     = "STXVM"
+}
 
 variable "vm_hostname" {
   type        = string
@@ -74,7 +85,7 @@ variable "vm_hostname" {
 variable "vm_firmware" {
   type = string
   description = "EFI or BIOS"
-  default = "EFI"
+  default = "efi"
 }
 
 variable "vm_cpu_socket" {
