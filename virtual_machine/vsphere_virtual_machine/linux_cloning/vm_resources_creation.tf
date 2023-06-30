@@ -1,10 +1,10 @@
 ## Creating one (1) VM :
 resource "vsphere_virtual_machine" "vm_linux" {
-  name                 = var.vm_name
   resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
   datastore_id = data.vsphere_datastore.datastore.id
   folder = '${var.vsphere_dc}'/'${var.vsphere_folder}'
 
+  name                 = var.vm_name
   firmware = var.vm_firmware
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
@@ -15,6 +15,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
   memory_hot_add_enabled = var.ram_hot_add
 
   wait_for_guest_net_timeout = var.wait_for_guest_net_timeout
+
   network_interface {
     network_id   = data.vsphere_network.network.id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]

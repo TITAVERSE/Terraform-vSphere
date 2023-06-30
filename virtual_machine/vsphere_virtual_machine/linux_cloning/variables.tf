@@ -25,10 +25,12 @@ variable "cust_trigramm" {
 
 ### Metadata
 variable "tags" {
+  description = "vSphere tag to put on VM"
   nullable = true
 }
 
 variable "custom_attribute" {
+  description = "custom attributes to pu on VM"
   nullable = true
 }
 
@@ -65,7 +67,7 @@ variable "vsphere_network" {
 
 variable "vsphere_folder" {
   type = string
-  default = "Discovered virtual machine"
+  default = "Discovered virtual machines"
 }
 
 ### VM Specs ###
@@ -84,7 +86,7 @@ variable "vm_hostname" {
 
 variable "vm_firmware" {
   type = string
-  description = "EFI or BIOS"
+  description = "efi or bios"
   default = "efi"
 }
 
@@ -93,7 +95,7 @@ variable "vm_cpu_socket" {
   description = "Number of socket cpu"
   default     = 1
   validation {
-    condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 32
+    condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 64
     error_message = "The value of vmcount must be between 1 and 32."
   }
 }
@@ -101,10 +103,10 @@ variable "vm_cpu_socket" {
 variable "vm_cpu_core" {
   type        = number
   description = "Number of core per cpu"
-  default     = 1
+  default     = 2
   validation {
     condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 16
-    error_message = "The value of vm_cpu_core must be between 1 and 16."
+    error_message = "The value of vm_cpu_core must be between 1 and 32."
   }
 }
 
@@ -120,7 +122,7 @@ variable "vm_ram" {
 
 
 variable "vm_disks" {
-  description = "Configuration of One (1) disk"
+  description = "Configuration of one (1) disk"
   type = list(object({
     size        = number
     unit_number = number
@@ -139,7 +141,7 @@ variable "vm_disks" {
 
 
 variable "vm_ipv4_ns" {
-  description = "Liste des serveurs DNS"
+  description = "Name servers IP"
   type        = list(string)
   default     = ["8.8.8.8", "8.8.4.4"]
 }
@@ -148,6 +150,7 @@ variable "vm_dns_suffixes" {
   description = "DNS suffixes"
   type        = string
   default     = "stx.corp"
+  nullable = true
 }
 
 variable "vm_ipv4_address" {
@@ -197,7 +200,7 @@ variable "customer_domain_name" {
 }
 
 variable "guest_OS" {
-  description = "OS to install, Linux, Windows, MacOS"
+  description = "OS to install, Linux, Windows, FreeBSD"
   nullable    = true
   default     = ""
 }
@@ -222,6 +225,6 @@ variable "vm_time_zone" {
 
 variable "wait_for_guest_net_timeout" {
   type        = number
-  description = "timeout fo networking"
+  description = "timeout for networking"
   default     = 0
 }
