@@ -4,7 +4,7 @@ variable "vsphere_dc" {
   default     = ""
 }
 
-variable "vsphere_folder_name" {
+variable "vsphere_folder_fullpath" {
   type = string
   description = "Folder name"
   nullable = false
