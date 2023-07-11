@@ -52,7 +52,8 @@ resource "vsphere_virtual_machine" "vm_linux" {
   }
   lifecycle {
     ignore_changes = [
-      annotation
+      annotation,
+      clone[0].template_uuid,
     ]
   }
 }
