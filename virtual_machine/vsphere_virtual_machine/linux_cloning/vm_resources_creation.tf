@@ -2,7 +2,7 @@
 resource "vsphere_virtual_machine" "vm_linux" {
   resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
   datastore_id = data.vsphere_datastore.datastore.id
-  folder = "${var.vsphere_dc}'/'${var.vsphere_folder}"
+  folder = "${var.vsphere_folder}"
 
   name                 = var.vm_name
   firmware = var.vm_firmware
