@@ -55,7 +55,12 @@ resource "vsphere_virtual_machine" "vm_linux" {
       annotation,
       clone[0].template_uuid,
       folder,
-      disk
+      disk[0],
+      disk[1],
+      disk[2],
+      disk[3],
+      disk[4],
+
     ]
   }
 }
