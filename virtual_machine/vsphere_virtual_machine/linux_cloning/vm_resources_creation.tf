@@ -2,7 +2,7 @@
 resource "vsphere_virtual_machine" "vm_linux" {
   resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
   datastore_id = data.vsphere_datastore.datastore.id
-  #folder = "${var.vsphere_folder}"
+  #folder = "${vsphere_dc}/${var.vsphere_folder}"
 
   vm_name                 = var.vm_name
   firmware = var.vm_firmware
@@ -54,6 +54,8 @@ resource "vsphere_virtual_machine" "vm_linux" {
     ignore_changes = [
       annotation,
       clone[0].template_uuid,
+      folder,
+      disk
     ]
   }
 }
