@@ -52,6 +52,5 @@ resource "vsphere_virtual_machine" "vm_linux" {
   }
   lifecycle {
     ignore_changes = all
-    ]
   }
 }
