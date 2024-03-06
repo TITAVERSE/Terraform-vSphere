@@ -149,7 +149,7 @@ variable "vm_ipv4_ns" {
 variable "vm_dns_suffixes" {
   description = "DNS suffixes"
   type        = string
-  default     = "stx.corp"
+  default     = ""
   nullable = true
 }
 
