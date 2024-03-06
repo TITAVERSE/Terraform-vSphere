@@ -196,7 +196,7 @@ variable "template_folder" {
 variable "customer_domain_name" {
   description = "Local domain AD/LDAP"
   type        = string
-  default     = "stx.corp"
+  default     = ""
 }
 
 variable "guest_OS" {
