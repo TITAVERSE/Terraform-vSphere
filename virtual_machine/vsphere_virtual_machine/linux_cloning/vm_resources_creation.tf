@@ -4,7 +4,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
   datastore_id = data.vsphere_datastore.datastore.id
   folder = "${var.vsphere_folder}"
 
-  vm_name                 = var.vm_name
+  name                 = var.vm_name
   firmware = var.vm_firmware
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
@@ -52,6 +52,5 @@ resource "vsphere_virtual_machine" "vm_linux" {
   }
   lifecycle {
     ignore_changes = all
-    ]
   }
 }

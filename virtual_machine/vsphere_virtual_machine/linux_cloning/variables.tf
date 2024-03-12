@@ -149,7 +149,7 @@ variable "vm_ipv4_ns" {
 variable "vm_dns_suffixes" {
   description = "DNS suffixes"
   type        = string
-  default     = "stx.corp"
+  default     = ""
   nullable = true
 }
 
@@ -196,7 +196,7 @@ variable "template_folder" {
 variable "customer_domain_name" {
   description = "Local domain AD/LDAP"
   type        = string
-  default     = "stx.corp"
+  default     = ""
 }
 
 variable "guest_OS" {
