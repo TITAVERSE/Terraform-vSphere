@@ -51,6 +51,9 @@ resource "vsphere_virtual_machine" "vm_linux" {
     }
   }
   lifecycle {
-    ignore_changes = all
+    ignore_changes = [
+      disk,
+      clone
+    ]
   }
 }
