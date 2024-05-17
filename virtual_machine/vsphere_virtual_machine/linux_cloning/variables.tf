@@ -24,11 +24,14 @@ variable "cust_trigramm" {
 }
 
 ### Metadata
-variable "vm_tags" {
-  type = list(string)
-  default = ["terraform"]
+variable "tags" {
   description = "vSphere tag to put on VM"
-  nullable = true
+  nullable = false
+}
+
+variable "tag_category" {
+  type = string
+  nullable = false
 }
 
 variable "custom_attribute" {
