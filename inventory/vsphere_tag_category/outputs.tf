@@ -1,3 +1,3 @@
 output "vsphere_tag_category" {
-  value = vsphere_tag_category.name
+  value = vsphere_tag_category.cat_name
 }
