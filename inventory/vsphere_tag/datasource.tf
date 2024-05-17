@@ -1,3 +1,3 @@
 data "vsphere_tag_category" "category" {
-  name = "example-category"
+  name = var.cat_name
 }

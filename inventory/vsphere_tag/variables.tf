@@ -31,3 +31,9 @@ variable "tag_description" {
   description = "Description of the category"
   nullable = true
 }
+
+# Category name is used by data
+variable "cat_name" {
+  description = "Name of the tag cateogry"
+  nullable = false
+}
