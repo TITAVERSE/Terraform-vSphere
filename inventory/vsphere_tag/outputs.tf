@@ -1,3 +1,3 @@
-output "vsphere_tag_category" {
-  value = vsphere_tag_category.category
+output "vsphere_tag" {
+  value = vsphere_tag.tag
 }
