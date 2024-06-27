@@ -20,7 +20,7 @@ variable "vsphere_password" {
 variable "cust_trigramm" {
   description = "Trigramme du client"
   type        = string
-  default     = "STX"
+  default     = "TTV"
 }
 
 ### Metadata
