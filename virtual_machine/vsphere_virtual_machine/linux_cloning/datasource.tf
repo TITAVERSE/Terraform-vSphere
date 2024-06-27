@@ -9,7 +9,7 @@ data "vsphere_compute_cluster" "cls_hosts" {
 }
 
 data "vsphere_datastore" "datastore" {
-  name = var.vsphere_ds
+  name          = var.vsphere_ds
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
@@ -19,7 +19,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name = var.vm_template
+  name          = var.vm_template
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 

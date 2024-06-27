@@ -26,17 +26,17 @@ variable "cust_trigramm" {
 ### Metadata
 variable "tags" {
   description = "vSphere tag to put on VM"
-  nullable = false
+  nullable    = false
 }
 
 variable "tag_category" {
-  type = string
+  type     = string
   nullable = false
 }
 
 variable "custom_attribute" {
   description = "custom attributes to pu on VM"
-  nullable = true
+  nullable    = true
 }
 
 ### Datacenter ####
@@ -71,7 +71,7 @@ variable "vsphere_network" {
 }
 
 variable "vsphere_folder" {
-  type = string
+  type    = string
   default = "Discovered virtual machines"
 }
 
@@ -90,9 +90,9 @@ variable "vm_hostname" {
 }
 
 variable "vm_firmware" {
-  type = string
+  type        = string
   description = "efi or bios"
-  default = "efi"
+  default     = "efi"
 }
 
 variable "vm_cpu_socket" {
@@ -155,7 +155,7 @@ variable "vm_dns_suffixes" {
   description = "DNS suffixes"
   type        = string
   default     = ""
-  nullable = true
+  nullable    = true
 }
 
 variable "vm_ipv4_address" {
