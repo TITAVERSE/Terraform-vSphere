@@ -153,12 +153,14 @@ variable "ram_hot_add" {
 
 variable "tag_name" {
   type = string
+  default = ""
   description = "tag's name"
   nullable = true
 }
 
 variable "tag_category" {
   type = string
+  default = ""
   description = "tag description"
   nullable = true
 }
