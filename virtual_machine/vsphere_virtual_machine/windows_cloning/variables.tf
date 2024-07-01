@@ -150,3 +150,15 @@ variable "ram_hot_add" {
   description = "Enable adding RAM while Powered on. Enabling/disabling this setup requires reboot."
   default = true
 }
+
+variable "tag_name" {
+  type = string
+  description = "tag's name"
+  nullable: true
+}
+
+variable "tag_category" {
+  type = string
+  description = "tag description"
+  nullable: true
+}

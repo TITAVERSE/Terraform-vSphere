@@ -1,10 +1,18 @@
 ## Creating one (1) VM :
 resource "vsphere_virtual_machine" "vm_linux" {
-  resource_pool_id       = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
-  datastore_id           = data.vsphere_datastore.datastore.id
-  folder                 = var.vsphere_folder
-  name                   = var.vm_name
-  firmware               = var.vm_firmware
+  resource_pool_id     = data.vsphere_compute_cluster.cls_hosts.resource_pool_id
+  datastore_id = data.vsphere_datastore.datastore.id
+  folder = "${var.vsphere_folder}"
+  #dynamic "tags" {
+  #  for_each = var.vm_tags
+  #  content {
+  #    name = var.tag_name
+  #    category = var.tag_category
+  #  }
+  #}
+
+  name                 = var.vm_name
+  firmware = var.vm_firmware
   num_cpus               = var.vm_cpu_socket
   num_cores_per_socket   = var.vm_cpu_core
   memory                 = var.vm_ram * 1024

@@ -24,14 +24,16 @@ variable "cust_trigramm" {
 }
 
 ### Metadata
-variable "tags" {
-  description = "vSphere tag to put on VM"
-  nullable    = false
+variable "tag_name" {
+  type = string
+  description = "vSphere tag for this VM"
+  nullable = true
 }
 
 variable "tag_category" {
-  type     = string
-  nullable = false
+  type = string
+  description = "vSphere tag category"
+  nullable = true
 }
 
 variable "custom_attribute" {
