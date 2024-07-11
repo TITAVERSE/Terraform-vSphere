@@ -8,6 +8,12 @@ data "vsphere_compute_cluster" "cls_hosts" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
+data "vsphere_resource_pool" "resource_pool" {
+  count = length(var.vsphere_resource_pool) > 0 ? 1 : 0 
+  name = var.vsphere_resource_pool
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
 data "vsphere_datastore" "datastore" {
   name          = var.vsphere_ds
   datacenter_id = data.vsphere_datacenter.dc.id

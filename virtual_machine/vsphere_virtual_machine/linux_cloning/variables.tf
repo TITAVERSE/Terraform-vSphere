@@ -57,6 +57,13 @@ variable "vsphere_cls_host" {
   default     = ""
 }
 
+variable "vsphere_resource_pool" {
+  type = string
+  description = "Ressource pool for VM"
+  default = ""
+  nullable = true
+}
+
 variable "vsphere_host" {
   type        = string
   description = "ESXi host"
