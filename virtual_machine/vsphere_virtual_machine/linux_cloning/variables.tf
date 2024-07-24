@@ -24,18 +24,25 @@ variable "cust_trigramm" {
 }
 
 ### Metadata
-variable "tag_name" {
-  type = string
-  default = true
-  description = "vSphere tag for this VM"
-  nullable = true
-}
+variable "vm_tags" {
+  type = list(object({
+    category_name = string
+    tag_name = string
+  }))
+  default = [{
+      category_name = "provisioner"
+      tag_name = "terraform"
 
-variable "tag_category" {
-  type = string
-  default = ""
-  description = "vSphere tag category"
-  nullable = true
+    },
+    {
+      category_name = "status"
+      tag_name = "prod"
+    },
+    {
+      category_name = "customer"
+      tag_name = "ttv"
+    }
+  ]
 }
 
 variable "custom_attribute" {
