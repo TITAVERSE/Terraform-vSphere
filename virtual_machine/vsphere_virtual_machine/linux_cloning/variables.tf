@@ -119,8 +119,8 @@ variable "vm_cpu_socket" {
   description = "Number of socket cpu"
   default     = 1
   validation {
-    condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 64
-    error_message = "The value of vmcount must be between 1 and 32."
+    condition     = var.vm_cpu_socket >= 1 && var.vm_cpu_socket <= 4
+    error_message = "The value of vmcount must be between 1 and 4."
   }
 }
 
@@ -129,8 +129,8 @@ variable "vm_cpu_core" {
   description = "Number of core per cpu"
   default     = 2
   validation {
-    condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 16
-    error_message = "The value of vm_cpu_core must be between 1 and 32."
+    condition     = var.vm_cpu_core >= 1 && var.vm_cpu_core <= 128
+    error_message = "The value of vm_cpu_core must be between 1 and 128."
   }
 }
 
