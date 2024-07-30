@@ -27,26 +27,26 @@ variable "cust_trigramm" {
 variable "vm_tags" {
   type = list(object({
     category_name = string
-    tag_name = string
+    tag_name      = string
   }))
   default = [{
-      category_name = "provisioner"
-      tag_name = "terraform"
+    category_name = "provisioner"
+    tag_name      = "terraform"
 
     },
     {
       category_name = "status"
-      tag_name = "prod"
+      tag_name      = "prod"
     },
     {
       category_name = "customer"
-      tag_name = "ttv"
+      tag_name      = "ttv"
     }
   ]
 }
 
 variable "custom_attribute" {
-  default = true
+  default     = true
   description = "custom attributes to pu on VM"
   nullable    = true
 }
@@ -65,10 +65,10 @@ variable "vsphere_cls_host" {
 }
 
 variable "vsphere_resource_pool" {
-  type = string
+  type        = string
   description = "Ressource pool for VM"
-  default = ""
-  nullable = true
+  default     = ""
+  nullable    = true
 }
 
 variable "vsphere_host" {
@@ -163,6 +163,29 @@ variable "vm_disks" {
   ]
 }
 
+variable "vm_networks" {
+  description = "Network interfaces to attach to the VM"
+  type = list(object(
+    {
+      network         = string
+      vm_ipv4_address = string
+      vm_ipv4_netmask = number
+
+    }
+  ))
+  default = [
+    {
+      network         = "VM Network"
+      vm_ipv4_address = "10.0.0.1"
+      vm_ipv4_netmask = 24
+    },
+    {
+      network         = "VM Network"
+      vm_ipv4_address = "10.0.0.1"
+      vm_ipv4_netmask = 24
+    }
+  ]
+}
 
 variable "vm_ipv4_ns" {
   description = "Name servers IP"
@@ -177,22 +200,10 @@ variable "vm_dns_suffixes" {
   nullable    = true
 }
 
-variable "vm_ipv4_address" {
-  type        = string
-  description = "IPv4 addresses for a vm"
-  default     = "192.168.1.1"
-}
-
 variable "vm_ipv4_gateway" {
   type        = string
   description = "IPv4 address of the Gateway"
   default     = "192.168.1.254"
-}
-
-variable "vm_ipv4_netmask" {
-  type        = string
-  description = "Netmask"
-  default     = 24
 }
 
 variable "vm_public_key" {
