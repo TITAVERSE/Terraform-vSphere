@@ -83,12 +83,6 @@ variable "vsphere_ds" {
   default     = ""
 }
 
-variable "vsphere_network" {
-  type        = string
-  description = "Network name in vCenter"
-  default     = "VM Network"
-}
-
 variable "vsphere_folder" {
   type    = string
   default = "Discovered virtual machines"
@@ -174,11 +168,6 @@ variable "vm_networks" {
     }
   ))
   default = [
-    {
-      network         = "VM Network"
-      vm_ipv4_address = "10.0.0.1"
-      vm_ipv4_netmask = 24
-    },
     {
       network         = "VM Network"
       vm_ipv4_address = "10.0.0.1"
