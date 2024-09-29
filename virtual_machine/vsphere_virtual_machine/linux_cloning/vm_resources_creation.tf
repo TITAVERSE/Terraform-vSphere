@@ -67,7 +67,8 @@ resource "vsphere_virtual_machine" "vm_linux" {
   lifecycle {
     ignore_changes = [
       disk,
-      clone
+      clone,
+      guest_id #change of this causes system reboot
     ]
   }
 }
