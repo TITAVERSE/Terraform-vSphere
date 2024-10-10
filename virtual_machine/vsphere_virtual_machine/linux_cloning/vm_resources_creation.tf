@@ -64,6 +64,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
       dns_server_list = var.vm_ipv4_ns
     }
   }
+  extra_config_reboot_required = true
   lifecycle {
     ignore_changes = [
       disk,
