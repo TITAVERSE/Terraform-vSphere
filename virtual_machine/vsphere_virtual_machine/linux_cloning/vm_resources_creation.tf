@@ -64,12 +64,13 @@ resource "vsphere_virtual_machine" "vm_linux" {
       dns_server_list = var.vm_ipv4_ns
     }
   }
-  extra_config_reboot_required = true
   lifecycle {
     ignore_changes = [
       disk,
       clone,
-      guest_id #change of this causes system reboot
+      guest_id, #change of this causes system reboot
+      ept_rvi_mode, #change of this causes system reboot
+      hv_mode, #change of this causes system reboot
     ]
   }
 }
