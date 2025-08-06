@@ -27,6 +27,7 @@ variable "vsphere_dc" {
 
 variable "vsphere_folder_fullpath" {
   type = string
+  default = "VM Folders"
   description = "Folder name"
   nullable = false
 }
