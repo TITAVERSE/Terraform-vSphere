@@ -42,3 +42,24 @@ variable "vsphere_folder_type" {
     error_message = "Only the following are supported : datacenter, host, vm, datastore, network."
   }
 }
+
+variable "vm_tags" {
+  type = list(object({
+    category_name = string
+    tag_name      = string
+  }))
+  default = [{
+    category_name = "provisioner"
+    tag_name      = "terraform"
+
+    },
+    {
+      category_name = "status"
+      tag_name      = "prod"
+    },
+    {
+      category_name = "customer"
+      tag_name      = "ttv"
+    }
+  ]
+}
