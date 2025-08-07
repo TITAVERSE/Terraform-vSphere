@@ -43,7 +43,7 @@ variable "vsphere_folder_type" {
   }
 }
 
-variable "vm_tags" {
+variable "folder_tags" {
   type = list(object({
     category_name = string
     tag_name      = string
