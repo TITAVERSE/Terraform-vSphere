@@ -16,13 +16,6 @@ variable "vsphere_password" {
   sensitive   = true
 }
 
-### Customer Information
-variable "cust_trigramm" {
-  description = "Trigramme du client"
-  type        = string
-  default     = "TTV"
-}
-
 ### Metadata
 variable "vm_tags" {
   type = list(object({
@@ -192,19 +185,7 @@ variable "vm_dns_suffixes" {
 variable "vm_ipv4_gateway" {
   type        = string
   description = "IPv4 address of the Gateway"
-  default     = "192.168.1.254"
-}
-
-variable "vm_public_key" {
-  type        = string
-  description = "Public key to be used to ssh into a machine"
-  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDR5IBKXMaxdiOt/p0lKX/cl4li5sEfCGoNZ2IrsPojUsM8szWii+4A9ZiOmwYPBgdd6HF5bXFH5nDUMexMpFVjIRR6wpQ1Mvh4lnOmFz3v0bHDmovxpnk1cYHkDGaIo1zWzLwSR3/DLeNDv5pmHUUz5ZF7M3NkpgILWYjus2y8Vuwxwn6uXHpzFuxc2J+KA0HlKKGfgCb026AejEtwf4J/NVOpEndwck1DkBw3jNQtaqVUEReAvCVJnehQzAfnQmbg7VTvWPxftwX+Ml64O04hmbui2Qgv6CePYB91GtzKgDubzAHfWduD3E9ju1/9h9aVFgLJRS9AGlS6j7l2xekZ2qVivkeGwzcNg9neA1DGDssVYszWfOABNV18VLLWIko8HolETAr+/YImTXTVXRaRbjkaGMdiNssOVbBzaNf+42HqA/DmrNO8UV8VWvirb1ai3yeHTU6DYHsnS85rC846KCyQcC1McBQpRcIHCNXqS7rG3TTTofyiMfHNHuJbwj4lPBx2ZhyiWtLxwVQQEWft4GKaCQmPzKR8Qt6Aj5rYwq+pilF3T2du7y5Iz6Q/1y3y0xH/7hA4iKpj82nRBGuwIagfDivzqmx3vzaDBaBOLQoLLvnWunkkuqSxuK+4jAWJrPOQjR6KRbKsUHL7FqeCu0CMW1mj7QBsEO10+E4WIw== stxtra@IX0035-PC"
-}
-
-variable "vm_lin_ssh_username" {
-  type      = string
-  sensitive = true
-  default   = "admin-stx"
+  default     = "10.0.0.253"
 }
 
 variable "vm_template" {
@@ -244,7 +225,7 @@ variable "ram_hot_add" {
 variable "vm_time_zone" {
   type        = string
   description = "Timezone of the VM"
-  default     = "Europe/Moscow"
+  default     = "Africa/Nairobi"
 }
 
 variable "wait_for_guest_net_timeout" {

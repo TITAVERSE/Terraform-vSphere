@@ -19,11 +19,6 @@ resource "vsphere_virtual_machine" "vm_linux" {
 
   wait_for_guest_net_timeout = var.wait_for_guest_net_timeout
 
-  #  network_interface {
-  #    network_id   = data.vsphere_network.network.id
-  #    adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
-  #  }
-
   dynamic "network_interface" {
     for_each = data.vsphere_network.networks
     content {
