@@ -239,3 +239,15 @@ variable "wait_for_guest_net_timeout" {
   description = "timeout for networking"
   default     = 0
 }
+
+variable "efi_secure_boot_enabled" {
+  type        = bool
+  description = "Use this option to enable EFI secure boot"
+  default     = true
+}
+
+variable "enable_logging" {
+  type        = bool
+  description = "Enable logging of virtual machine events to a log file stored in the virtual machine directory"
+  default     = true
+}

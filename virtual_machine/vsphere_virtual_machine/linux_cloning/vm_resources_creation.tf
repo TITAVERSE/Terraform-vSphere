@@ -17,6 +17,9 @@ resource "vsphere_virtual_machine" "vm_linux" {
   cpu_hot_remove_enabled = var.cpu_hot_add_remove
   memory_hot_add_enabled = var.ram_hot_add
 
+  efi_secure_boot_enabled = var.efi_secure_boot_enabled
+  enable_logging          = var.enable_logging
+
   wait_for_guest_net_timeout = var.wait_for_guest_net_timeout
 
   dynamic "network_interface" {
