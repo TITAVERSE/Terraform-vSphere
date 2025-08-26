@@ -216,6 +216,12 @@ variable "cpu_hot_add_remove" {
   default     = true
 }
 
+variable "cpu_hot_remove_enabled" {
+  type        = bool
+  description = "Allow CPUs to be removed to the virtual machine while it is powered on."
+  default     = true
+}
+
 variable "ram_hot_add" {
   type        = bool
   description = "Enable adding RAM while Powered on. Enabling/disabling this setup requires reboot."

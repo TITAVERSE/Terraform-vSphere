@@ -63,9 +63,9 @@ resource "vsphere_virtual_machine" "vm_linux" {
     ignore_changes = [
       disk,
       clone,
-      guest_id, #change of this causes system reboot
+      guest_id,     #change of this causes system reboot
       ept_rvi_mode, #change of this causes system reboot
-      hv_mode, #change of this causes system reboot
+      hv_mode,      #change of this causes system reboot
     ]
   }
 }
