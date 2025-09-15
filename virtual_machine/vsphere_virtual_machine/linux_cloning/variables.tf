@@ -251,3 +251,9 @@ variable "enable_logging" {
   description = "Enable logging of virtual machine events to a log file stored in the virtual machine directory"
   default     = true
 }
+
+variable "vm_annotation" {
+  type = string
+  description = "VM annotation on vSphere"
+  default = "This is provisionned/managed by Terraform"
+}

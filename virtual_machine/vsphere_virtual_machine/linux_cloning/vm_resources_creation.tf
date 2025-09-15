@@ -3,6 +3,7 @@ resource "vsphere_virtual_machine" "vm_linux" {
   resource_pool_id = var.vsphere_resource_pool != "" ? data.vsphere_resource_pool.resource_pool[0].id : data.vsphere_compute_cluster.cls_hosts.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
   folder           = var.vsphere_folder
+  annotation = var.vm_annotation
   tags = [
     for tag in data.vsphere_tag.tags : tag.id
   ]
