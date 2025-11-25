@@ -257,3 +257,9 @@ variable "vm_annotation" {
   description = "VM annotation on vSphere"
   default = "This is provisionned/managed by Terraform"
 }
+
+variable "extra_ignored" {
+  type    = list(string)
+  default = []
+  nullable = true
+}
