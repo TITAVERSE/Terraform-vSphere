@@ -257,19 +257,3 @@ variable "vm_annotation" {
   description = "VM annotation on vSphere"
   default = "This is provisionned/managed by Terraform"
 }
-
-variable "extra_ignored" {
-  type    = list(string)
-  default = []
-  nullable = true
-}
-
-locals {
-  ignore_static = [
-    "disk",
-    "clone",
-    "guest_id",
-    "ept_rvi_mode",
-    "hv_mode",
-  ]
-}
