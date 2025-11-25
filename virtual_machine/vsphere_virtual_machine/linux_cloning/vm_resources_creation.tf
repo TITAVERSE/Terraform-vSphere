@@ -63,15 +63,10 @@ resource "vsphere_virtual_machine" "vm_linux" {
       dns_server_list = var.vm_ipv4_ns
     }
   }
+
+  ignore_final = concat(local.ignore_static, var.extra_ignored)
+  
   lifecycle {
-    ignore_changes = concat ([
-      disk,
-      clone,
-      guest_id,     #change of this causes system reboot
-      ept_rvi_mode, #change of this causes system reboot
-      hv_mode,      #change of this causes system reboot
-    ],
-    var.extra_ignored
-    )
+    ignore_changes = ignore_changes = local.ignore_final
   }
 }
