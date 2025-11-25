@@ -67,6 +67,6 @@ resource "vsphere_virtual_machine" "vm_linux" {
   ignore_final = concat(local.ignore_static, var.extra_ignored)
   
   lifecycle {
-    ignore_changes = ignore_changes = local.ignore_final
+    ignore_changes = local.ignore_final
   }
 }
