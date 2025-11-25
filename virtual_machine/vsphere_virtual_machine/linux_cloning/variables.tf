@@ -263,3 +263,12 @@ variable "extra_ignored" {
   default = []
   nullable = true
 }
+
+locals {
+  ignore_static = [
+    "disk",
+    "clone",
+    "guest_id",
+    "ept_rvi_mode",
+    "hv_mode",
+  ]
