@@ -17,9 +17,9 @@ The idea is to be able manage each instance created separately by iterating some
 
 # Operate with module
 ## Install the submodule
-The following command will install the universal module inside the folder provisionning/Terraform-vSphere
+The following command will install the universal module inside the folder provisioning/Terraform-vSphere
 ```
-git submodule add -b main https://github.com/TITAVERSE/Terraform-vSphere  provisionning/Terraform-vSphere
+git submodule add -b main https://github.com/TITAVERSE/Terraform-vSphere  provisioning/Terraform-vSphere
 ```
 
 ## Init Terraform providers
